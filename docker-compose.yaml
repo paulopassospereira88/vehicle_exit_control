@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: db_vehicle_exit_control
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 121314
+      POSTGRES_DB: vehicle_exit_control
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  springboot:
+    build: .
+    container_name: app_vehicle_exit_control
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/vehicle_exit_control
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 121314
+    depends_on:
+      - postgres
+    networks:
+      - my_network
+
+volumes:
+  db_data:
+
+networks:
+  my_network:
+    driver: bridge
+

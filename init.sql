@@ -1,0 +1,1 @@
+CREATE DATABASE vehicle_exit_control;
