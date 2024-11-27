@@ -4,6 +4,7 @@ import br.com.passos.vehicle_exit_control.model.Driver;
 import br.com.passos.vehicle_exit_control.repository.DriverRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,6 +22,11 @@ public class DriverService {
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    public Driver findByCnh(Integer cnh) {
+        Optional<Driver> driver = this.driverRepository.findByCnh(cnh);
+        return driver.orElseThrow(() -> new RuntimeException("Driver not found"));
     }
 
 }
