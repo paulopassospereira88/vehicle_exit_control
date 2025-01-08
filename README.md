@@ -1,4 +1,4 @@
-# Controle de Saída de Caminhão
+# Controle de Saída de Caminhao
 
 Este projeto é uma API para controle de saída de caminhões de um depósito. A API permite o cadastro de motoristas e veículos (caminhões), além de registrar a data, horário, destino e quilometragem da saída do veículo da empresa e posteriormente registrar sua entrada na empresa.
 
